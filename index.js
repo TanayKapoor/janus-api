@@ -1,10 +1,12 @@
 const express = require("express");
+const cors = require("cors");
 const app = express();
 const port = 3000;
 const apiRoutes = require("./routes/api");
 const swaggerUi = require("swagger-ui-express");
 const swaggerJsdoc = require("swagger-jsdoc");
 
+app.use(cors());
 app.use(express.json());
 app.use("/api", apiRoutes);
 
@@ -18,7 +20,7 @@ const options = {
     host: "localhost:3000",
     basePath: "/",
   },
-  apis: ["./routes/*.js"], // Path to the API docs
+  apis: ["./routes/*.js"],
 };
 
 const specs = swaggerJsdoc(options);
