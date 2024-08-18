@@ -3,12 +3,14 @@ const cors = require("cors");
 const app = express();
 const port = 3000;
 const apiRoutes = require("./routes/api");
+const statusRoutes = require("./routes/status");
 const swaggerUi = require("swagger-ui-express");
 const swaggerJsdoc = require("swagger-jsdoc");
 
-app.use(cors());
+app.use(cors()); 
 app.use(express.json());
 app.use("/api", apiRoutes);
+app.use("/api", statusRoutes); 
 
 const options = {
   swaggerDefinition: {
@@ -20,15 +22,11 @@ const options = {
     host: "localhost:3000",
     basePath: "/",
   },
-  apis: ["./routes/*.js"],
+  apis: ["./routes/*.js"], // Path to the API docs
 };
 
 const specs = swaggerJsdoc(options);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
-
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}/`);
