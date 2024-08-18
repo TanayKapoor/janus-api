@@ -1,0 +1,64 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "My Node API",
+    "description": "Example API using Swagger"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Users",
+      "description": "API for users in the system"
+    }
+  ],
+  "schemes": ["http"],
+  "paths": {
+    "/api/users": {
+      "get": {
+        "tags": ["Users"],
+        "summary": "Get all users",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "format": "int64"
+                  },
+                  "name": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/date-difference": {
+      "get": {
+        "tags": ["Date"],
+        "summary": "Get the difference in hours from now to 1-12-2024",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "hoursDifference": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
